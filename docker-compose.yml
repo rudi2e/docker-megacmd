@@ -1,0 +1,18 @@
+version: '3.7'
+
+services:
+  mega:
+    image: rudi2e/mega:latest
+    build:
+      context: .
+      args:
+        - PUID=1000
+        - PGID=1000
+    container_name: mega
+    restart: unless-stopped
+    user: 1000:1000
+    network_mode: bridge
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./config:/root/.megaCmd
+      - /home/user/private:/mnt/private
